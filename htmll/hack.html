@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVU - Website Ini Kena Hack (PoC)</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../file css/style.css">
+    <style>
+        .poc-shot {
+            border-radius: var(--radius);
+            border: 1px solid var(--border-strong);
+            box-shadow: var(--shadow);
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .poc-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .poc-fact {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.15rem 1.25rem;
+        }
+        .poc-fact h6 {
+            color: var(--heading);
+            font-size: .8rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .4rem;
+        }
+        .poc-fact p { color: var(--muted); margin: 0; font-size: .9rem; }
+        .poc-findings { display: grid; gap: .9rem; }
+        .poc-finding {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--border-strong);
+            border-radius: 14px;
+            padding: 1rem 1.15rem;
+        }
+        .poc-finding.med { border-left-color: #f59e0b; }
+        .poc-finding.low { border-left-color: #22d3ee; }
+        .poc-finding.info { border-left-color: #64748b; }
+        .poc-sev {
+            flex: 0 0 auto;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: .28rem .55rem;
+            border-radius: 999px;
+            background: var(--surface-strong);
+            color: var(--heading);
+        }
+        .poc-finding.med .poc-sev { background: rgba(245, 158, 11, .16); color: #fbbf24; }
+        .poc-finding.low .poc-sev { background: rgba(34, 211, 238, .14); color: #22d3ee; }
+        .poc-finding h6 { color: var(--heading); margin-bottom: .25rem; }
+        .poc-finding p { color: var(--muted); margin: 0; font-size: .92rem; }
+        .poc-code {
+            background: #05070d;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 1.15rem;
+            overflow-x: auto;
+            color: #9fe8f5;
+            font-size: .88rem;
+            line-height: 1.65;
+            white-space: pre;
+        }
+        .poc-note {
+            border: 1px dashed var(--border-strong);
+            border-radius: 14px;
+            padding: 1rem 1.15rem;
+            color: var(--muted);
+            font-size: .92rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">AVU</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="visimisi.html">Visi Misi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="divisi.html">Divisi</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="hack.html">PoC</a></li>
+                </ul>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Ubah mode terang/gelap">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container" data-aos="fade-up" data-aos-duration="900">
+            <span class="section-label"><i class="fas fa-shield-halved"></i> Security Notice</span>
+            <h1>Website Ini <span class="highlight">Kena Hack</span></h1>
+            <p>Proof of Concept pentest — halaman ini ditambahkan tanpa panel admin, tanpa form upload, dan tanpa backend.</p>
+        </div>
+    </section>
+
+    <section id="poc">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-duration="700">
+                    <img src="../foto%20kita%20blurr/website_ini_kena_hack.jpg"
+                         alt="Website ini kena hack" class="poc-shot">
+
+                    <div class="poc-facts">
+                        <div class="poc-fact">
+                            <h6><i class="fas fa-server"></i> Hosting</h6>
+                            <p>GitHub Pages, konten statis murni. Tidak ada PHP, database, atau server sendiri.</p>
+                        </div>
+                        <div class="poc-fact">
+                            <h6><i class="fas fa-upload"></i> Upload</h6>
+                            <p>Tidak ada fitur unggah. Satu-satunya jalur masuk adalah commit ke repository.</p>
+                        </div>
+                        <div class="poc-fact">
+                            <h6><i class="fas fa-lock-open"></i> Perimeter</h6>
+                            <p>Branch <code>main</code> tidak dilindungi dan seluruh aset CDN tanpa SRI.</p>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <span class="section-label"><i class="fas fa-magnifying-glass"></i> Temuan</span>
+                    <h2 class="section-title mb-4">Yang <span class="highlight">bisa</span> diperbaiki</h2>
+
+                    <div class="poc-findings">
+                        <div class="poc-finding med">
+                            <span class="poc-sev">Medium</span>
+                            <div>
+                                <h6>Aset CDN tanpa Subresource Integrity</h6>
+                                <p>Bootstrap, Font Awesome, dan AOS dimuat dari jsDelivr, cdnjs, dan unpkg tanpa atribut <code>integrity</code>. Jika salah satu CDN atau paketnya dibajak, skrip jahat ikut jalan di semua halaman.</p>
+                            </div>
+                        </div>
+                        <div class="poc-finding med">
+                            <span class="poc-sev">Medium</span>
+                            <div>
+                                <h6>Tidak ada Content-Security-Policy</h6>
+                                <p>GitHub Pages tidak mengirim CSP dan tidak ada meta CSP. Tidak ada rem untuk skrip pihak ketiga maupun <code>frame-ancestors</code> (clickjacking).</p>
+                            </div>
+                        </div>
+                        <div class="poc-finding low">
+                            <span class="poc-sev">Low</span>
+                            <div>
+                                <h6>Branch main tidak dilindungi</h6>
+                                <p>API melaporkan <code>protected: false</code>. Siapa pun yang memegang akun bisa force-push dan menimpa riwayat situs.</p>
+                            </div>
+                        </div>
+                        <div class="poc-finding low">
+                            <span class="poc-sev">Low</span>
+                            <div>
+                                <h6>Link footer "AVU" rusak di semua subhalaman</h6>
+                                <p>Footer memakai <code>href="index.html"</code> relatif, sehingga mengarah ke <code>htmll/index.html</code> yang tidak ada (404).</p>
+                            </div>
+                        </div>
+                        <div class="poc-finding info">
+                            <span class="poc-sev">Info</span>
+                            <div>
+                                <h6>Halaman "Admin" bukan panel admin</h6>
+                                <p>Isinya kartu pengurus, tanpa login. Tidak ada autentikasi yang bisa diuji karena memang tidak ada.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <span class="section-label"><i class="fas fa-terminal"></i> Reproduksi</span>
+                    <h2 class="section-title mb-3">Jalur masuk yang dipakai</h2>
+                    <p style="color: var(--muted);">Karena situs statis, "menembus" di sini berarti menaruh berkas ke repository lalu membiarkan Pages membangunnya. Langkahnya:</p>
+                    <pre class="poc-code">git clone https://github.com/asmul-code/First-Try.git
+cd First-Try
+cp website_ini_kena_hack.jpg "foto kita blurr/"
+cp hack.html htmll/
+git add .
+git commit -m "PoC: website ini kena hack"
+git push origin main</pre>
+
+                    <div class="poc-note mt-4">
+                        <i class="fas fa-circle-info"></i>
+                        Halaman ini hasil pentest defensif dengan izin pemilik. Isinya bukti celah, bukan defacement permanen — mudah dihapus dengan satu commit.
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <a href="../index.html" class="btn-primary-grad">
+                            <i class="fas fa-arrow-left"></i> Balik ke Beranda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 text-center text-md-start">
+                    <p>&copy; 2026 AVU - AcademyVollereiUnited. All rights reserved.</p>
+                </div>
+                <div class="col-md-2 text-center my-3 my-md-0">
+                    <a href="../index.html" class="footer-brand">AVU</a>
+                </div>
+                <div class="col-md-5 text-center text-md-end">
+                    <div class="footer-social d-inline-flex gap-2">
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="../file js/script.js"></script>
+</body>
+</html>
